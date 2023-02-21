@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: app
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app-container
+          image: gcr.io/quick-asset-377911/python_app
+          ports:
+            - containerPort: 8000
+        - name: redis-container
+          image: redis
+          ports:
+            - containerPort: 6379
+  selector:
+    matchLabels:
+      app: app
