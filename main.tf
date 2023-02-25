@@ -2,7 +2,7 @@ resource "google_container_cluster" "primary" {
   name                     = "primary"
   location                 = "asia-east1-b"
   remove_default_node_pool = true
-  initial_node_count       = 2
+  initial_node_count       = 1
   network                  = google_compute_network.vpc_network.self_link
   subnetwork               = google_compute_subnetwork.subnet-2.self_link
   networking_mode          = "VPC_NATIVE"
@@ -44,7 +44,7 @@ resource "google_container_cluster" "primary" {
 resource "google_container_node_pool" "general" {
   name       = "general"
   cluster    = google_container_cluster.primary.id
-  node_count = 2
+  node_count = 1
 
   management {
     auto_repair  = true
